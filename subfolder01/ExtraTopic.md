@@ -1,6 +1,6 @@
 # Extra Topic in einem Unterordner  
 
-Um komplexere Informationstrukturen aufbuen zu können, muß es auch möglich sein,
+Um komplexere Informationstrukturen aufbauen zu können, muß es auch möglich sein,
 Unterordner mit Leben respektive Informationen füllen und auch anzeigen zu können.
 
 Mal sehen, ob dies direkt sichtbar wird.

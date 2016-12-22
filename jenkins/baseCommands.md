@@ -1,6 +1,8 @@
 # Evaluating Docker as Development Environment  
 
-Base directory: /Users/jgellien/Documents/Projects/Docker-Starter/Jenkins  
+Basic inspiration and starting point was the book "DevOps 2.1 Toolkit" from Victor Farcic and his presentation taken from his web site [vfarcic.github.io][vfarcic]
+
+Here starts the presentation of ["DevOps 2.1 Toolkit: Continuous Deployment with Jenkins and Docker Swarm"][docker-swarm-jenkins]
 
 Collect a proposal to create a local development environment with the help of 
 
@@ -9,9 +11,14 @@ Collect a proposal to create a local development environment with the help of
 
 ## Jenkins  
 
-Einstiegsseite auf dockerhub: [Jenkins on Dockerhub](https://hub.docker.com/_/jenkins/)  
+A second entry point on dockerhub: [Jenkins on Dockerhub][docker-jenkins]  
 Start out with basic commands to create a Jenkins environment.  
 
 	docker run -p 8080:8080 -p 50000:50000 jenkins
 
-docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /var/jenkins_home jenkins
+	docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /var/jenkins_home jenkins
+
+
+[vfarcic]: http://vfarcic.github.io  
+[docker-jenkins]: https://hub.docker.com/_/jenkins/  
+[docker-swarm-jenkins]: http://vfarcic.github.io/jenkins-swarm/workshop.html  

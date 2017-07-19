@@ -14,9 +14,9 @@ Collect a proposal to create a local development environment with the help of
 A second entry point on dockerhub: [Jenkins on Dockerhub][docker-jenkins]  
 Start out with basic commands to create a Jenkins environment.  
 
-	docker run -p 8080:8080 -p 50000:50000 jenkins
+	docker run -p 8080:8080 -p 50000:50000 jenkinsci/jenkins:2.60.1
 
-	docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /var/jenkins_home jenkins
+	docker run --name myjenkins -p 8080:8080 -p 50000:50000 -v /var/jenkins_home jenkinsci/jenkins:2.60.1
 
 
 [vfarcic]: http://vfarcic.github.io  

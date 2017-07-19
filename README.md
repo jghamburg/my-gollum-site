@@ -1,16 +1,17 @@
 README.md  
 
-Erstelle Docker Image:  
+Create basic Docker Image:  
 
 	docker build -t gollum .
 
-Starten des Docker images: 
+Start the Docker images: 
 
 	docker run -v `pwd`:/wiki -p 4567:80 gollum
 
-Dann Aufruf im Browser:  
+Call Gollum from browser:  
 
 	http://localhost:4567
 
-und los geht es mit der Dokumentation.
+and now start to document ...  
+.. no more excuses ;-)  
 

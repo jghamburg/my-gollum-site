@@ -10,7 +10,8 @@ Here you find direct links to all references used to build my knowledge on this 
 A lot of examples and sniplets will follow.  
 
 [Continuous Delivery](https://de.wikipedia.org/wiki/Continuous_Delivery)  
-
+[The Ten Commandments Of Continuous Delivery by Victor Farcic](https://github.com/vfarcic/vfarcic.github.io/blob/master/cd-ten-commandments/article.md)  
+[Automating Jenkins Docker Setup by Victor Farcic](https://github.com/vfarcic/vfarcic.github.io/blob/master/articles/uber-jenkins.md)  
 [Documentation of Jenkins  Pipeline Plugin Project](https://jenkins.io/doc/pipeline/)  
 [Tutorial to enter work with Pipeline plugins](https://github.com/jenkinsci/pipeline-plugin/blob/master/TUTORIAL.md)  
 [Reference of all Step-definitions of the Pipeline Plugin](https://jenkins.io/doc/pipeline/steps/)  

@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  gollum:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: "gollum:latest"
+    container_name: "gollum"
+
+    ports:
+      - "4567:80"
+    environment:
+      - ASSETMGMT_MONGODB_HOST=mongo
+      - ASSETMGMT_MONGODB_DB=assets-mongo
+    volumes:
+      - ./:/wiki

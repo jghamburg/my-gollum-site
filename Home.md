@@ -1,8 +1,9 @@
-# Dokumentation von Ideen mittels Gollum  
+# Documenting Ideas using Gollum  
 
-Mit dem Web basierten Framework / Wiki Gollum auf Basis von GitHub Markdown und durch die Verwendung von git können auch längere Artikel in verschiedenen Revisionen erstellt werden.
+For some time I was looking for an easy way to write articles by using Markdown and / or Ascii doctor.  This experiment started with the web framework / wiki Gollum. Based on GitHub markdown and using git as persistance layer for me the horizonts opend up for writting longer 
+technical articles with the safety of multiple revisions.
 
-Details zum Betrieb von Gollum mittels Docker ist sehr gut [hier][docker-gollum] zu finden.
+A good headstart on Gollum inside Docker you an find [here][docker-gollum].  
 
 Best site for DevOps and Jenkins CD inspration I took from [Victor Farcic][vfarcic]. Look on [leanpub.com][leanpub]
 

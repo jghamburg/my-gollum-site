@@ -2,7 +2,8 @@
 
 ## Summary for the Impatient  
 
-This article describes the setup of a local dns service to call k8s services from the host machine. It is validated on macos High Sierra 10.13.6. With this setup you can use fqn service names to resolve redirect problems on your local development machine.
+This article describes the setup of a local dns service to call k8s services from the host machine. It is validated on macos High Sierra 10.13.6. With this setup you can use fqn service names to resolve redirect problems on your local development machine.  
+This article is based on solutions on macos but contains references to Linux as well.
 
 ## The story begins  
 
@@ -53,7 +54,69 @@ kubectl get svc -n kube-system kube-dns
 # kube-dns   ClusterIP   10.96.0.10   <none>        53/UDP,53/TCP   37d
 ```
 
-TODO: more details on setup and get details on kubeDNS ip e.a.  
+### setting up dnsmasq (macos)  
+
+```bash
+# install binaries
+brew install dnsmasq
+# setup directory structure
+mkdir -pv $(brew --prefix)/etc/
+# setup svc.cluster.local domain
+echo 'address=/.svc.cluster.local/10.96.0.10' >> $(brew --prefix)/etc/dnsmasq.conf
+# change port for High Sierra
+echo 'port=53' >> $(brew --prefix)/etc/dnsmasq.conf
+# autostart - now and after reboot
+sudo brew services start dnsmasq
+```
+
+To restart the service later on you can use  
+
+```bash
+sudo brew services restart dnsmasq
+# Stopping `dnsmasq`... (might take a while)
+# ==> Successfully stopped `dnsmasq` (label: homebrew.mxcl.dnsmasq)
+# ==> Successfully started `dnsmasq` (label: homebrew.mxcl.dnsmasq)
+```
+
+Now setup the required resolver details
+
+```bash
+sudo mkdir -v /etc/resolver
+sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
+```
+
+That's it! You can run 
+
+```bash
+scutil --dns 
+# DNS configuration
+# resolver #1
+#   nameserver[0] : 8.8.8.8
+#   nameserver[1] : 8.8.4.4
+#   if_index : 5 (en0)
+#   flags    : Request A records
+#   reach    : 0x00000002 (Reachable)
+# ...
+# resolver #9
+#   domain   : svc.cluster.local
+#   nameserver[0] : 10.96.0.10
+#   flags    : Request A records
+#   reach    : 0x00000002 (Reachable)
+# ...
+```
+
+to show all of your current resolvers, and you should see that all requests for a domain ending in .dev will go to the DNS server at 127.0.0.1.
+
+And here you see a resolution example:
+
+```bash
+dig @127.0.0.1 auth.local.svc.cluster.local
+# ; <<>> DiG 9.10.6 <<>> @127.0.0.1 auth.local.svc.cluster.local
+# ...
+# ;; ANSWER SECTION:
+# auth.local.svc.cluster.local. 0	IN	A	10.96.0.10
+# ...
+```
 
 ## The missing Link.   
 
@@ -101,4 +164,4 @@ In the next installment I will talk about possibilities to debug and develop com
 
 [Setup dnsmasq on OSX]: https://gist.github.com/brablc/f48fef6336765212360ed3de66034b90   
 [docker-tuntap-osx]: https://github.com/AlmirKadric-Published/docker-tuntap-osx  
-[Access Minikube services from Host on OSX]: http://  
+[Access Minikube services from Host on OSX]: https://stevesloka.com/access-minikube-services-from-host/  

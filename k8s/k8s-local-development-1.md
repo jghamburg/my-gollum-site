@@ -121,8 +121,32 @@ dig @127.0.0.1 auth.local.svc.cluster.local
 ## The missing Link.   
 
 How do I connect to the k8s network on my macos?  
-After a lot of research I found a solution that worked for me: [docker-tuntap-osx].  
+After a lot of research I found a solution that worked for me: [docker-tuntap-osx]. - With a little extra from [TunTap for OSX]. 
+
 The basic idea is to provide a new network device and tunnel the traffic for the ip subnet containing all the service ip inside of my local k8s cluster.   
+To do so we first need a tap device to count on. So install [TunTap for OSX] first.
+
+```bash
+# download neccessary package in tempDir of your choice
+curl -L http://downloads.sourceforge.net/tuntaposx/tuntap_20150118.tar.gz --output tuntap_20150118.tar.gz
+tar xvzf tuntap_20150118.tar.gz
+# The installer allows to customize which parts of the package are installed in case you only need either tun or tap.
+# change to active folder with finder
+# double tap on tuntap_20150118.pkg with mouse to start installer and follow the instractions.
+```
+
+After successful installation you will find the required tap devices  
+
+```bash
+ls -al /dev/tap*
+# crw-rw----  1 root      wheel   22,   0 27 Nov 10:03 /dev/tap0
+# crw-rw----  1 jgellien  wheel   22,   1  1 Dez 18:17 /dev/tap1
+# ...
+```
+
+To uninstall the kernal modules later on just follow the instructions in the provided README.
+
+Now the required bridge network into the docker engine can be setuo.
 
 ```bash
 git clone https://github.com/AlmirKadric-Published/docker-tuntap-osx.git
@@ -136,7 +160,7 @@ cd docker-tuntap-osx
 route add -net 10.92.0.0/12 10.75.0.2  
 ```
 
-Now the traffic route is open for a final test. Lets say a service proxy is running in the namespace local on the k8s cluster. And you check results from a shell on your local machine.
+The traffic route is open for a final test. Lets say a service proxy is running in the namespace local on the k8s cluster. And you check results from a shell on your local machine.
 
 ```bash
 kubectl get svc -n local proxy
@@ -146,13 +170,16 @@ dig @127.0.0.1 proxy.local.svc.cluster.local
 # ...
 # ;; ANSWER SECTION:
 # proxy.local.svc.cluster.local. 0 IN	A	10.96.0.10
-curl —verbose http://proxy.local.svc.cluster.local
+curl —-verbose http://proxy.local.svc.cluster.local
+# * Rebuilt URL to: http://proxy.local.svc.cluster.local/
+# *   Trying 10.107.76.229...
+# * TCP_NODELAY set
+# * Connected to proxy.local.svc.cluster.local (10.107.76.229) port 80 (#0)
 ```
 
 # Resumee.   
 
-Now I am able to install complex service meshes from different self contained systems on my local machine and use redirect techniques inside and outside of the k8s cluster. 
-
+I am able to install complex service meshes from different self contained systems on my local machine and use redirect techniques inside and outside of the k8s cluster.  
 
 In the next installment I will talk about possibilities to debug and develop components while these are associated to other services already running inside of my local k8s cluster. - Why should I want to do so?  Hey man, the world isn‘t always perfect!   
 
@@ -161,7 +188,9 @@ In the next installment I will talk about possibilities to debug and develop com
 * [Setup dnsmasq on OSX][Setup dnsmasq on OSX]
 * [docker-tuntap-osx][docker-tuntap-osx]
 * [Access Minikube services from Host on OSX][Access Minikube services from Host on OSX]  
+* [TunTap for OSX][TunTap for OSX]
 
 [Setup dnsmasq on OSX]: https://gist.github.com/brablc/f48fef6336765212360ed3de66034b90   
 [docker-tuntap-osx]: https://github.com/AlmirKadric-Published/docker-tuntap-osx  
 [Access Minikube services from Host on OSX]: https://stevesloka.com/access-minikube-services-from-host/  
+[TunTap for OSX]: http://tuntaposx.sourceforge.net/

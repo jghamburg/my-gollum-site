@@ -183,7 +183,19 @@ I am able to install complex service meshes from different self contained system
 
 In the next installment I will talk about possibilities to debug and develop components while these are associated to other services already running inside of my local k8s cluster. - Why should I want to do so?  Hey man, the world isn‘t always perfect!   
 
+# Just a Hint for Windows 10 Pro  
+
+The setup of the network bridge looks rather simillar to the one of a colleague using windows 10 pro. Under Docker for Desktop a 
+network device is already provided.  
+
+I have no machine to verify but it looks promising.  
+
 # RESOURCES.  
+
+For development I am using a MacBook Pro (Retina, 15', Mid 2015), 16GB, macOS High Sierra.  
+Docker for Desktop Version 2.0.0.0-beta1-mac75 (27117) edge  
+with Kubernetes: v1.10.3  
+
 
 * [Setup dnsmasq on OSX][Setup dnsmasq on OSX]
 * [docker-tuntap-osx][docker-tuntap-osx]

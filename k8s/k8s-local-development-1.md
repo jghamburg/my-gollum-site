@@ -177,6 +177,7 @@ netstat -rt
 # Destination        Gateway            Flags        Refs      Use   Netif Expire
 # ...
 # 10.0.75/24         link#16            UC              1        0    tap1
+# 10.0.75.2          0:a0:98:bc:f5:d7   UHLWIi          1        0    tap1   1198
 # 10.0.75.255        ff:ff:ff:ff:ff:ff  UHLWbI          0        1    tap1
 # 10.96/12           10.0.75.2          UGSc            2        0    tap1
 # ...

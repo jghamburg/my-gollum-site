@@ -82,7 +82,7 @@ Now setup the required resolver details
 
 ```bash
 sudo mkdir -v /etc/resolver
-sudo bash -c 'echo "nameserver 127.0.0.1" > /etc/resolver/dev'
+sudo bash -c 'echo "nameserver 10.96.0.10" > /etc/resolver/svc.cluster.local'
 ```
 
 That's it! You can run 
@@ -133,6 +133,18 @@ tar xvzf tuntap_20150118.tar.gz
 # The installer allows to customize which parts of the package are installed in case you only need either tun or tap.
 # change to active folder with finder
 # double tap on tuntap_20150118.pkg with mouse to start installer and follow the instractions.
+# Or just use homebrew
+brew tap caskroom/cask
+brew cask install tuntap
+# Updating Homebrew...
+# ==> Auto-updated Homebrew!
+# ...
+# ==> Verifying SHA-256 checksum for Cask 'tuntap'.
+# ==> Installing Cask tuntap
+# ==> Running installer for tuntap; your password may be necessary.
+# ==> Package installers may write to any location; options such as --appdir are ignored.
+# ...
+# 🍺  tuntap was successfully installed!
 ```
 
 After successful installation you will find the required tap devices  

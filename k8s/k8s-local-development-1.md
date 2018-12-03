@@ -170,6 +170,16 @@ cd docker-tuntap-osx
 # 
 # and don't forget to add network route configuration for k8s services  
 route add -net 10.92.0.0/12 10.75.0.2  
+# check the network routing table:
+netstat -rt
+# Routing tables
+# Internet:
+# Destination        Gateway            Flags        Refs      Use   Netif Expire
+# ...
+# 10.0.75/24         link#16            UC              1        0    tap1
+# 10.0.75.255        ff:ff:ff:ff:ff:ff  UHLWbI          0        1    tap1
+# 10.96/12           10.0.75.2          UGSc            2        0    tap1
+# ...
 ```
 
 The traffic route is open for a final test. Lets say a service proxy is running in the namespace local on the k8s cluster. And you check results from a shell on your local machine.

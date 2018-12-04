@@ -127,13 +127,6 @@ The basic idea is to provide a new network device and tunnel the traffic for the
 To do so we first need a tap device to count on. So install [TunTap for OSX] first.
 
 ```bash
-# download neccessary package in tempDir of your choice
-curl -L http://downloads.sourceforge.net/tuntaposx/tuntap_20150118.tar.gz --output tuntap_20150118.tar.gz
-tar xvzf tuntap_20150118.tar.gz
-# The installer allows to customize which parts of the package are installed in case you only need either tun or tap.
-# change to active folder with finder
-# double tap on tuntap_20150118.pkg with mouse to start installer and follow the instractions.
-# Or just use homebrew
 brew tap caskroom/cask
 brew cask install tuntap
 # Updating Homebrew...
@@ -145,6 +138,13 @@ brew cask install tuntap
 # ==> Package installers may write to any location; options such as --appdir are ignored.
 # ...
 # 🍺  tuntap was successfully installed!
+# OR BY HAND
+# download neccessary package in tempDir of your choice
+curl -L http://downloads.sourceforge.net/tuntaposx/tuntap_20150118.tar.gz --output tuntap_20150118.tar.gz
+tar xvzf tuntap_20150118.tar.gz
+# The installer allows to customize which parts of the package are installed in case you only need either tun or tap.
+# change to active folder with finder
+# double tap on tuntap_20150118.pkg with mouse to start installer and follow the instractions.
 ```
 
 After successful installation you will find the required tap devices  
@@ -169,7 +169,7 @@ cd docker-tuntap-osx
 ./sbin/docker_tab_up.sh
 # 
 # and don't forget to add network route configuration for k8s services  
-route add -net 10.92.0.0/12 10.75.0.2  
+route add -net 10.92.0.0/12 10.0.75.2  
 # check the network routing table:
 netstat -rt
 # Routing tables
@@ -193,7 +193,7 @@ dig @127.0.0.1 proxy.local.svc.cluster.local
 # ...
 # ;; ANSWER SECTION:
 # proxy.local.svc.cluster.local. 0 IN	A	10.96.0.10
-curl —-verbose http://proxy.local.svc.cluster.local
+curl -verbose http://proxy.local.svc.cluster.local
 # * Rebuilt URL to: http://proxy.local.svc.cluster.local/
 # *   Trying 10.107.76.229...
 # * TCP_NODELAY set

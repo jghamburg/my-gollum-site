@@ -127,7 +127,7 @@ The basic idea is to provide a new network device and tunnel the traffic for the
 To do so we first need a tap device to count on. So install [TunTap for OSX] first.
 
 ```bash
-brew tap caskroom/cask
+brew tap homebrew/cask
 brew cask install tuntap
 # Updating Homebrew...
 # ==> Auto-updated Homebrew!
@@ -169,7 +169,8 @@ cd docker-tuntap-osx
 ./sbin/docker_tab_up.sh
 # 
 # and don't forget to add network route configuration for k8s services  
-route add -net 10.92.0.0/12 10.0.75.2  
+route add -net 10.96.0.0/12 10.0.75.2  
+# or try sudo route add  -net 10.96.0.0/12 -netmask 255.240.0.0  10.0.75.2
 # check the network routing table:
 netstat -rt
 # Routing tables
@@ -199,6 +200,14 @@ curl -verbose http://proxy.local.svc.cluster.local
 # * TCP_NODELAY set
 # * Connected to proxy.local.svc.cluster.local (10.107.76.229) port 80 (#0)
 ```
+
+Just one more thing if still not working jet. Try this  
+
+```bash
+docker run --rm --privileged --pid=host debian nsenter -t 1 -m -u -n -i iptables -A FORWARD -i eth1 -j ACCEPT
+```
+
+This is taken from the README.md of [docker-tuntap-osx][docker-tuntap-osx].  
 
 # Resumee.   
 

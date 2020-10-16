@@ -17,7 +17,8 @@ helm repo list
 
 ```bash
 helm install chartmuseum stable/chartmuseum
-helm repo add localchart http://chartmuseum.default.svc.cluster.local
+helm repo add localcharts http://chartmuseum-chartmuseum.default.svc.cluster.local:8080
+# "localcharts" has been added to your repositories
 ```
 
 ## Sonarqube  

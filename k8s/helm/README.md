@@ -1,9 +1,36 @@
-# Localstack for local development  
+# Setup for local k8s  
 
-## How to use in local K8s  
+## Chart Repositories  
+
+Check if you have the insteresting chart repositories installed:  
 
 ```bash
- helm upgrade --install localhost --namespace default  localstack
+helm repo list
+# NAME   	URL
+# stable 	https://kubernetes-charts.storage.googleapis.com
+# bitnami	https://charts.bitnami.com/bitnami
+# loki   	https://grafana.github.io/loki/charts
+# oteemo 	https://oteemo.github.io/charts
+```
+
+## chartmuseum  
+
+```bash
+helm install chartmuseum stable/chartmuseum
+helm repo add localchart http://chartmuseum.default.svc.cluster.local
+```
+
+## Sonarqube  
+
+```bash
+helm repo add oteemo https://oteemo.github.io/charts
+helm upgrade --install sonarqube --namespace default oteemo/sonarqube
+```
+
+## Localstack for local development  
+
+```bash
+ helm upgrade --install localstack --namespace default localstack
  ```
 
  If you want to use a aws service from a component you can reference by k8s service url:

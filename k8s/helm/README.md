@@ -1,5 +1,47 @@
 # Setup for local k8s  
 
+## Web UI  
+
+Install web ui.  
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+kubectl proxy
+```
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
+```bash
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+EOF
+```
+
+Retrieve token for accessing the dashboard.
+
+```bash
+kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+```
+
 ## Chart Repositories  
 
 Check if you have the insteresting chart repositories installed:  
@@ -47,3 +89,21 @@ helm upgrade --install sonarqube --namespace default oteemo/sonarqube
  open http://localhost:8099
  ```
  
+ ## Loki Monitoring  
+
+ Prepare installation:
+
+```bash
+k create namespace loki-stack
+# namespace/logmon created
+helm repo add loki https://grafana.github.io/loki/charts
+helm upgrade --install loki --namespace=loki-stack loki/loki-stack
+#
+helm install --namespace loki-stack  prometheus  bitnami/kube-prometheus
+```
+
+To work with loki, prometheus and graphana open the browser to grafana:
+
+```bash
+open http://grafana.loki-stack.svc.cluster.local
+```

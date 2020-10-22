@@ -11,5 +11,9 @@ spec:
       targetPort: {{ .Values.image.containerPort }}
       protocol: TCP
       name: http
+    - port: {{ .Values.app.port_web_ui }}
+      targetPort: {{ .Values.app.port_web_ui }}
+      protocol: TCP
+      name: webui
   selector:
     {{- include "localstack.selectorLabels" . | nindent 4 }}

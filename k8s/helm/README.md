@@ -6,10 +6,7 @@ Install web ui.
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
-kubectl proxy
-```
-
-```bash
+#
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
 kind: ServiceAccount
@@ -17,9 +14,7 @@ metadata:
   name: admin-user
   namespace: kubernetes-dashboard
 EOF
-```
-
-```bash
+#
 cat <<EOF | kubectl apply -f -
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -34,12 +29,10 @@ subjects:
   name: admin-user
   namespace: kubernetes-dashboard
 EOF
-```
-
-Retrieve token for accessing the dashboard.
-
-```bash
+# Retrieve token for accessing the dashboard.
 kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+# start k8s proxy to connect dashboard
+kubectl proxy
 ```
 
 ## Chart Repositories  

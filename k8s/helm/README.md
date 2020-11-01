@@ -5,7 +5,7 @@
 Install web ui.  
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.4/aio/deploy/recommended.yaml
 kubectl proxy
 ```
 
@@ -73,8 +73,8 @@ helm upgrade --install sonarqube --namespace default oteemo/sonarqube
 ## Localstack for local development  
 
 ```bash
- helm upgrade --install localstack --namespace default localstack
- ```
+helm upgrade --install localstack --namespace default localstack
+```
 
  If you want to use a aws service from a component you can reference by k8s service url:
 

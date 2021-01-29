@@ -86,7 +86,7 @@ On a short side note: Spring Data supports the use of VAVR Option since 2018.
 * [26 Reasons Why Using Optional Correctly Is Not Optional](https://dzone.com/articles/using-optional-correctly-is-not-optional)  
 * [Vavr - Java functional Library](https://www.vavr.io/)  
 * [Andy Luis Blog](http://mvpjava.com/java-optional/)  - with reference to a youtube video with live coding
-* [In Praise of VAVRs Option David Schmitz May 26, 2017](https://dev.to/koenighotze/in-praise-of-vavrs-option)
+* [In Praise of VAVRs Option David Schmitz 2017](https://blog.senacor.com/in-praise-of-vavrs-option/)
 * [Baeldung: Vavr Support in Spring Data](https://www.baeldung.com/spring-vavr)
 * [What's new in Spring Data Lovelace](https://spring.io/blog/2018/09/27/what-s-new-in-spring-data-lovelace)
 

@@ -1,11 +1,12 @@
 # 2021-01-29 Is Optional an Option ?   
 
-Optional was introduced in Java 8 to simplify and reduce the use of Null. And to better prevent NullpointerExceptions.
+Optional was introduced in Java 8 to simplify and reduce the use of Null. And to better prevent NullpointerExceptions. - Remember Java 8 was introduced in 2014 so this is actually no new topic or invention. But I found a lot of developers in my working context were not using this feature.  
+So this should be a short intro and my take on the subject.  
 
 >  Optional is intended to provide a limited mechanism for library method return types where there needed to be a clear way to represent “no result," and using null for such was overwhelmingly likely to cause errors. 
 >> The purpose of Java 8 Optional is clearly defined by Brian Goetz, Java’s language architect
 
-So basically Optional 
+So basically Optional  
 
 * is used as return value for functions that might return null. - to prevent NullPointerExceptions
 * can be used as local variable.
@@ -50,12 +51,13 @@ Cart myCart = optCart.orElseGet(Cart::new);
 ```
 The second version uses lazy evaluation and is only triggered if the empty case is true.
 
-So **Lazy Evaluation** is one of the pillars of functional programming.
+**Lazy Evaluation** is one of the pillars of functional programming and I will pic this topic in a later post.
 
 The major flaw from my perspective:  
 
 ```java
-Optional.of(null).get(); // will throw a NullPointerException.
+Optional.of(null).get(); 
+// will throw a NullPointerException.
 ```
 
 The basic intention of Optional was to circumvent NullPointerExceptions in the first place - with the restriction of using it as return values not general algebraic data type.
@@ -63,7 +65,8 @@ The basic intention of Optional was to circumvent NullPointerExceptions in the f
 
 ## The other Option
 
-In contrast to Optional (Java8) the type Option like used in vavr library (java) and Scala is a Functor on algebraic data types. And as such it has far reaching applicability.  
+In contrast to Optional (Java8) the type Option like used in vavr library (java) and Scala is a monadic data type. And as such it has far reaching applicability.  
+
 With Option it is not possible to throw a NullPointerException.
 
 Side-note: Javaslang's Option fixes several issues of Java's Optional type:
@@ -74,9 +77,16 @@ Side-note: Javaslang's Option fixes several issues of Java's Optional type:
   * Option can be pattern matched (Some and None)
     taken from Ideomatic Javaslang: For Comprehension
 
-**Resources**:  
+A short and concise praise can be found in [In Praise of VAVRs Option][In Praise of VAVRs Option].  
+
+On a short side note: Spring Data supports the use of VAVR Option since 2018. 
+
+## Resources  
 
 * [26 Reasons Why Using Optional Correctly Is Not Optional](https://dzone.com/articles/using-optional-correctly-is-not-optional)  
 * [Vavr - Java functional Library](https://www.vavr.io/)  
-* http://mvpjava.com/java-optional/ Andy Luis Blog - with reference to a youtube video with live coding
+* [Andy Luis Blog](http://mvpjava.com/java-optional/)  - with reference to a youtube video with live coding
+* [In Praise of VAVRs Option David Schmitz May 26, 2017](https://dev.to/koenighotze/in-praise-of-vavrs-option)
+* [Baeldung: Vavr Support in Spring Data](https://www.baeldung.com/spring-vavr)
+* [What's new in Spring Data Lovelace](https://spring.io/blog/2018/09/27/what-s-new-in-spring-data-lovelace)
 

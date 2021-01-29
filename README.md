@@ -1,17 +1,10 @@
-README.md  
+# Practice Coding  
 
-Create basic Docker Image:  
+This site is a first attempt to collect different aspects of my professional life as a software developer, techical designer and operator.  
 
-	docker build -t gollum .
+What books have influenced me  
+What kind of ideas and structures helped me to organize my workflow
+What practical tips eased my daily business
 
-Start the Docker images: 
-
-	docker run -v `pwd`:/wiki -p 4567:80 gollum
-
-Call Gollum from browser:  
-
-	http://localhost:4567
-
-and now start to document ...  
-.. no more excuses ;-)  
+So you will find entrypoints to topics with further references to explore and read. The ideas stated here are in no means complete and reflect the state of mind while wrote.  
 

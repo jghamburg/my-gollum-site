@@ -5,7 +5,7 @@
 replicaCount: 1
 
 app:
-  services: "s3,sns,sqs"
+  services: "s3,sns,sqs,ssm"
   port_web_ui: 8099
   docker_host: "unix:///var/run/docker.sock"
 

@@ -15,49 +15,5 @@ spec:
       targetPort: {{ .Values.app.port_web_ui }}
       protocol: TCP
       name: webui
-    - port: 4572
-      targetPort: 4572
-      protocol: TCP
-      name: s3
-    - port: 4583
-      targetPort: 4583
-      protocol: TCP
-      name: ssm
-    - port: 4576
-      targetPort: 4576
-      protocol: TCP
-      name: sqs
-    - port: 4575
-      targetPort: 4575
-      protocol: TCP
-      name: sns
-    - port: 4579
-      targetPort: 4579
-      protocol: TCP
-      name: ses
-    - port: 4569
-      targetPort: 4569
-      protocol: TCP
-      name: dynamodb
-    - port: 4570
-      targetPort: 4570
-      protocol: TCP
-      name: dynamodbstream
-    - port: 4574
-      targetPort: 4574
-      protocol: TCP
-      name: lambda
-    - port: 4567
-      targetPort: 4567
-      protocol: TCP
-      name: apigateway
-    - port: 4582
-      targetPort: 4582
-      protocol: TCP
-      name: cloudwatch
-    - port: 4584
-      targetPort: 4584
-      protocol: TCP
-      name: secretsmanager
   selector:
     {{- include "localstack.selectorLabels" . | nindent 4 }}

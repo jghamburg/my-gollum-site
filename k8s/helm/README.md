@@ -90,7 +90,7 @@ helm upgrade --install localstack --namespace default localstack
 k create namespace loki-stack
 # namespace/logmon created
 helm repo add loki https://grafana.github.io/loki/charts
-helm upgrade --install loki --namespace=loki-stack loki/loki-stack
+helm upgrade --install loki --namespace=loki-stack --version=2.3.1 loki/loki-stack
 #
 helm install --namespace loki-stack  prometheus  bitnami/kube-prometheus
 ```
@@ -100,3 +100,8 @@ To work with loki, prometheus and graphana open the browser to grafana:
 ```bash
 open http://grafana.loki-stack.svc.cluster.local
 ```
+
+## Resources  
+
+* [Installation Loki](https://grafana.com/docs/loki/latest/installation/helm/)  
+* [Basic loki installation - chart repo and descriptions](https://grafana.github.io/loki/charts/)  

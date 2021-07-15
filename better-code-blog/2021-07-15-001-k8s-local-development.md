@@ -1,5 +1,12 @@
 # My way to Amarillo - or a better local development with k8s (part 1)  
 
+## Revised version  
+
+The first writeup took place somewhere in 2017.  
+What amazes me - it still works in 2021 with all the major upgrades on Docker for Desktop on Mac.  
+In this version I use latest version of Docker for Desktop on Mac and k3d to setup the Kubernetes environment.  
+The network topology stays the same.  
+
 ## Summary for the Impatient  
 
 This article describes the setup of a local dns service to call k8s services from the host machine. It is validated on macos High Sierra 10.13.6. With this setup you can use fqn service names to resolve redirect problems on your local development machine.  
@@ -15,7 +22,7 @@ On basis of k8s now the time is right to redefine the phrase
 > Works on my machine!  
 > — Lonely Developer
 
-![Network Topology](./Network-Topology.jpg)
+![Network Topology](./images/Network-topology.jpg)
 
 To setup a local k8s cluster using Docker for Desktop or Minikube is straight forward. And is left to the humble reader of this article.  
 Simple enough but ...   
@@ -228,6 +235,9 @@ For development I am using a MacBook Pro (Retina, 15', Mid 2015), 16GB, macOS Hi
 Docker for Desktop Version 2.0.0.0-beta1-mac75 (27117) edge  
 with Kubernetes: v1.10.3  
 
+Updated on 2021-07-15  
+Using Docker for Desktop 3.3.1 (63152) - Docker 20.10.5  
+K3s installed with k3d (v 1.19.7)  
 
 * [Setup dnsmasq on OSX][Setup dnsmasq on OSX]
 * [docker-tuntap-osx][docker-tuntap-osx]
@@ -237,4 +247,6 @@ with Kubernetes: v1.10.3
 [Setup dnsmasq on OSX]: https://gist.github.com/brablc/f48fef6336765212360ed3de66034b90   
 [docker-tuntap-osx]: https://github.com/AlmirKadric-Published/docker-tuntap-osx  
 [Access Minikube services from Host on OSX]: https://stevesloka.com/access-minikube-services-from-host/  
-[TunTap for OSX]: http://tuntaposx.sourceforge.net/
+[TunTap for OSX]: http://tuntaposx.sourceforge.net/  
+[K3D Loadbalancing - Metallb on Mac](https://habd.as/post/kubernetes-macos-load-balancing-k3s-k3d-metallb/)
+
